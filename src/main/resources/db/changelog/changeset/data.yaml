@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: ivanov_vladimir
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: Artem
+              - column:
+                  name: password
+                  value: 44444
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: Sergey
+              - column:
+                  name: password
+                  value: 55555

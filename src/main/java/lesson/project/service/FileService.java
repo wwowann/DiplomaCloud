@@ -6,12 +6,13 @@ import lesson.project.dto.FilenameUpdateDto;
 import lesson.project.exception.AppException;
 import lesson.project.model.FileEntity;
 import lesson.project.model.User;
-import lesson.project.repository.AuthRepository;
+//import lesson.project.repository.AuthRepository;
 import lesson.project.repository.FileRepository;
 import lesson.project.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +33,7 @@ import java.util.stream.Collectors;
 public class FileService {
     private final FileRepository fileRepository;
     private final UserRepository userRepository;
-    private final AuthRepository authRepository;
+//    private final AuthRepository authRepository;
 
 
     public boolean save(String authToken, String filename, FileDto dto) {
@@ -106,9 +107,11 @@ public class FileService {
 
     //получение пользователя по токену
     private User getUserByAuthToken(String authToken) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (authToken.startsWith("Bearer ")) {
             final String authTokenWithoutBearer = authToken.split(" ")[1];
-            final String username = authRepository.getUsernameByToken(authTokenWithoutBearer);
+            final String username = user.getUsername();
+//                    authRepository.getUsernameByToken(authTokenWithoutBearer);
             return userRepository.findByUsername(username);
         }
         return null;

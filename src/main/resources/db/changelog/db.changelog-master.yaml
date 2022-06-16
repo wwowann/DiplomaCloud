@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: changeset/create-table-users.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changeset/create-table-files.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changeset/users_user_files.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changeset/data.yaml
+      relativeToChangelogFile: true
