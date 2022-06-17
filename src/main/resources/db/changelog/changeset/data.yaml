@@ -8,7 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-                  value: Artem
+                  value: ivasin75@mail.ru
               - column:
                   name: password
                   value: 44444
@@ -17,7 +17,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: username
-                  value: Sergey
+                  value: kolchuga-ekb@yandex.ru
               - column:
                   name: password
                   value: 55555
