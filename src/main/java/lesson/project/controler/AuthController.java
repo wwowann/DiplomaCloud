@@ -19,7 +19,7 @@ public class AuthController {
 
     private final AuthService authService;
 
-    //метод авторизации. Получение токена
+    //метод авторизации. Возврат токена
     @PostMapping("login")
     public AuthTokenResponseDTO login(@RequestBody LoginPasswordRequestDto dto) {
         return authService.login(dto);
