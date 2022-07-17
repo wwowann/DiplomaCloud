@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class LoginPasswordRequestDto {
     @NotBlank(message = "Login is required")
-    private String login;
+    private String username;
     @NotBlank(message = "Password is required")
     private String password;
 }

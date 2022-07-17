@@ -11,7 +11,7 @@ databaseChangeLog:
                   value: ivasin75@mail.ru
               - column:
                   name: password
-                  value: 44444
+                  value: $2a$12$L3PwTFCJA/lMl36kxubNPOssJEpmUPzx9e.zCDStbQzJUjrICy76W
         - insert:
             tableName: users
             columns:
@@ -20,4 +20,6 @@ databaseChangeLog:
                   value: kolchuga-ekb@yandex.ru
               - column:
                   name: password
-                  value: 55555
+                  value: $2a$12$sWZjHFCA9cEIUQ4Q1oQRMuEHpLLtIgdvv7p2P9X.FUaQ1WL0P5dFC
+
+

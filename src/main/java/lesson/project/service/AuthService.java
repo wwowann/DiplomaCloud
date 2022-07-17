@@ -20,7 +20,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 @Slf4j// логирование
 public class AuthService {
-    //    private final AuthRepository authRepository;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenUtil jwtTokenUtil;
     private final UserService userService;
@@ -28,7 +27,7 @@ public class AuthService {
     private static final Map<String, String> BlackListTOKENS = new ConcurrentHashMap<>();
 
     public AuthTokenResponseDTO login(LoginPasswordRequestDto request) {
-        final String username = request.getLogin();//получение логина из объекта DTO - request
+        final String username = request.getUsername();//получение логина из объекта DTO - request
         final String password = request.getPassword();//получение пароля из объекта DTO - request
         //проверка на наличие в базе пользователя с данными логина и пароля в запросе
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -37,12 +36,14 @@ public class AuthService {
         //генерация токена доступа JWT
         final String token = jwtTokenUtil.generateToken(userDetails);
         BlackListTOKENS.put(token, username);//сохранение токена и имени клиента в мапу
-        log.info("User " + username + " login");
+        log.info("User " + username);
+        log.info("Класс AuthService Создан токен для username:" + username + ", password:" + password + " токен: " + token );
+        log.info("черный список, текущий username= " + BlackListTOKENS.get(token));
         return new AuthTokenResponseDTO(token);// генерация response с текущим токеном
     }
 
     public void logout(String authToken) {
-//        final String token = authToken.substring(7);
+        log.info("authToken= " + authToken);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         final String username = user.getUsername();
         log.info("User {} logout. JWT is disabled.", username);
