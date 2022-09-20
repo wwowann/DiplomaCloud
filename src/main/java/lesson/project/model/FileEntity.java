@@ -22,7 +22,8 @@ public class FileEntity {
     @Column(nullable = false)
     private LocalDateTime date;
     @Lob
-    private byte[] file;
+    private byte[] fileContent;
+
     private Long size;
 
     @ManyToOne

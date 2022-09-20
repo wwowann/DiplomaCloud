@@ -33,7 +33,6 @@ import java.util.stream.Collectors;
 public class FileService {
     private final FileRepository fileRepository;
     private final UserRepository userRepository;
-//    private final AuthRepository authRepository;
 
 
     public boolean save(String authToken, String filename, FileDto dto) {
@@ -50,6 +49,7 @@ public class FileService {
                     file.getBytes(),
                     file.getSize(),
                     user));
+            log.info("размер файла = " + file.getSize());
             log.info("Success upload file. User {}", user.getUsername());
             return true;
         } catch (IOException e) {
@@ -62,7 +62,7 @@ public class FileService {
         Optional<FileEntity> entity = fileRepository.findByFilename(filename);
         if (entity.isPresent()) {
             FileEntity fileEntity = entity.get();
-            return fileEntity.getFile();
+            return fileEntity.getFileContent();
         } else {
             throw new AppException("File with this name doesn't exist");
         }
@@ -77,7 +77,7 @@ public class FileService {
     public Optional<FileEntity> updateFilename(String filename, FilenameUpdateDto dto) {
         Optional<FileEntity> fileEntity = fileRepository.updateFilename(filename, dto.getFilename());
         if (fileEntity.isPresent()) {
-            return fileEntity;
+           return fileEntity;
         } else {
             throw new AppException("File with this name doesn't exist");
         }

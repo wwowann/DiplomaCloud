@@ -2,6 +2,7 @@ package lesson.project.repository;
 
 import lesson.project.model.FileEntity;
 import lesson.project.model.User;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,10 @@ public interface FileRepository extends JpaRepository<FileEntity, Long> {
     Optional<FileEntity> findByFilename(String filename);
 
     void deleteByFilename(String filename);
+
+//    @Modifying
+//    @NotNull
+//    Optional<FileEntity> save(@NotNull FileEntity file);
 
     @Modifying
     @Query("UPDATE files f SET f.filename = :newName WHERE f.filename = :filename")

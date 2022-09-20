@@ -27,7 +27,7 @@ public class AuthService {
     private static final Map<String, String> BlackListTOKENS = new ConcurrentHashMap<>();
 
     public AuthTokenResponseDTO login(LoginPasswordRequestDto request) {
-        final String username = request.getUsername();//получение логина из объекта DTO - request
+        final String username = request.getLogin();//получение логина из объекта DTO - request
         final String password = request.getPassword();//получение пароля из объекта DTO - request
         //проверка на наличие в базе пользователя с данными логина и пароля в запросе
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
